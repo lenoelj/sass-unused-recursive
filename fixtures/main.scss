@@ -1,0 +1,13 @@
+$foo-used: lime;
+$foo: aliceblue;
+$bar: blue; /* not used - simple */
+
+$btn-color: black; /* another problem - orbit-ui */
+
+.test {
+  width: 100px;
+}
+
+@import "components";
+@import "orbit-ui/main";
+
