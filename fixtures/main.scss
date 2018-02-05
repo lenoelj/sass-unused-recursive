@@ -2,6 +2,21 @@ $foo-used: lime;
 $foo: aliceblue;
 $bar: blue; /* not used - simple */
 
+$bbb: 600px;
+
+$inter-pre: hey;
+$inter-post: hey;
+
+.u-#{$inter-pre}-#{$inter-post} {
+  position: fixed;
+}
+
+@mixin orb-t-less-than-pluto {
+  @media (max-width: $bbb) {
+    @content;
+  }
+}
+
 $btn-color: black; /* another problem - orbit-ui */
 
 .test {
@@ -10,4 +25,5 @@ $btn-color: black; /* another problem - orbit-ui */
 
 @import "components";
 @import "orbit-ui/main";
+@import "mixin";
 
