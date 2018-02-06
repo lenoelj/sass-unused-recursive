@@ -1,6 +1,6 @@
 $foo-used: lime;
 $foo: aliceblue;
-$bar: blue; /* not used - simple */
+$bar-not-used: blue; /* not used - simple */
 
 $bbb: 600px;
 
@@ -11,19 +11,19 @@ $inter-post: hey;
   position: fixed;
 }
 
-@mixin orb-t-less-than-pluto {
+@mixin less-than-pluto-not-used {
   @media (max-width: $bbb) {
     @content;
   }
 }
 
-$btn-color: black; /* another problem - orbit-ui */
+$btn-color-not-used: black;
 
 .test {
   width: 100px;
 }
 
 @import "components";
-@import "orbit-ui/main";
+@import "orbit/main"; /* Included path from ./deep/include */
 @import "mixin";
 
