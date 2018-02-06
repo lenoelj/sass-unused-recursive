@@ -11,7 +11,7 @@ node app.js # you should see two validation errors
 ## How to use
 
 ``` js
-let unusedChecker = require("webpack-playground");
+let unusedChecker = require("sass-unused-recursive");
 
 const location = path.resolve("./fixtures/main.scss");
 const paths = [];
