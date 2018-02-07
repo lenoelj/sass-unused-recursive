@@ -4,19 +4,22 @@ const path = require("path");
 
 describe("unusedChecker()", function () {
     it("should find unused variables", function (done) {
-        const location = path.resolve("./fixtures/main.scss");
-        const paths = [ path.resolve("./fixtures/deep/include") ];
+        const entryPoint = path.resolve("./fixtures/main.scss");
+        const includePaths = [ path.resolve("./fixtures/deep/include") ];
 
-        unusedChecker(location, paths)
+        unusedChecker(entryPoint, includePaths)
             .catch(function ({ unused }) {
+                unused = unused.map(variable => variable.name);
+
                 assert.deepEqual(unused, [
-                    'not-used',
+                    // 'not-used', // <-- defined in include paths
                     'bar-not-used',
                     'btn-color-not-used',
-                    'mixin-color-not-used',
-                    'less-than-pluto-not-used'
+                    // 'mixin-color-not-used', // <-- mixin
+                    // 'less-than-pluto-not-used' // <-- mixin
                 ]);
-            })
-            .then(done);
+
+                done();
+            });
     });
 });
