@@ -1,0 +1,15 @@
+.test {
+  width: 100px;
+}
+
+.pension-component {
+  color: $foo;
+}
+
+.foo {
+  color: red;
+}
+
+.u-#{$inter-pre}-#{$inter-post} {
+  position: fixed;
+}
