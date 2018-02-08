@@ -2,59 +2,55 @@ const { assert } = require("chai");
 const unusedChecker = require("../lib");
 const path = require("path");
 
-const entryPoint = path.resolve("./fixtures/_main.scss");
+const entry = path.resolve("./fixtures/_main.scss");
+// const entryPoint = path.resolve("./fixtures/themes/_one.scss");
 const includePaths = [ path.resolve("./fixtures/vendor") ];
 
 describe("unusedChecker()", function () {
-    it("should ignore mixins, functions, includes", function (done) {
-        unusedChecker(entryPoint, {
-            includePaths,
-            exclude: [
-                "includes",
-                "mixins",
-                "functions"
-            ]
-        }).catch(function ({ unused }) {
-            assert.deepEqual(unused, [
-                'bar-not-used',
-                'btn-color-not-used'
-            ]);
-
-            done();
+    it("should ignore mixins, functions, vendors", function () {
+        let unused = unusedChecker({
+            entry,
+            includePaths, exclude: [ "vendors", "mixins", "functions" ]
         });
+        assert.deepEqual(unused, [ "app-s-variable-not-used" ]);
     });
 
-    it("should log variables from exclude", function (done) {
-        unusedChecker(entryPoint, {
-            includePaths,
-            exclude: [
-                "mixins",
-                "functions"
-            ]
-        }).catch(function ({ unused }) {
-            assert.deepEqual(unused, [
-                'not-used', // <-- defined in include paths
-                'bar-not-used',
-                'btn-color-not-used'
-            ]);
-
-            done();
+    it("should not ignore vendors", function () {
+        let unused = unusedChecker({
+            entry,
+            includePaths, exclude: ["mixins", "functions"]
         });
+        assert.deepEqual(unused, [
+            'orb-s-vendor-variable-not-used',
+            'orb-s-override-vendor-default-variable',
+            'app-s-variable-not-used'
+        ]);
     });
 
-    it("should log variables from exclude", function (done) {
-        unusedChecker(entryPoint, {
-            includePaths,
-        }).catch(function ({ unused }) {
-            assert.deepEqual(unused, [
-                'not-used', // <-- defined in include paths
-                'bar-not-used',
-                'btn-color-not-used',
-                'mixin-color-not-used', // <-- mixin
-                'less-than-pluto-not-used' // <-- mixin
-            ]);
+    it("should not ignore anything", function () {
+        let unused = unusedChecker({ entry, includePaths });
+        assert.deepEqual(unused, [
+            'orb-s-vendor-variable-not-used', // <-- defined in include paths
+            'orb-s-override-vendor-default-variable', // <-- defined in include paths
+            'app-s-variable-not-used',
+            'mixin-not-used'
+        ]);
+    });
 
-            done();
+    it("should handle multiple entries", function () {
+        let unused = unusedChecker({
+            entries: path.resolve("./fixtures/themes/"),
+            includePaths,
+            exclude: [ "vendors", "mixins", "functions" ]
+        });
+
+        assert.deepEqual(unused, {
+            "__common": [
+                "app-s-variable-not-used"
+            ],
+            "_one.scss": [
+                "foo"
+            ]
         });
     });
 });

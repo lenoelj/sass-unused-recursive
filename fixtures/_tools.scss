@@ -1,9 +1,7 @@
-@mixin mixin-color-not-used($sel: ".color") {
-  #{$sel}-1 { color: red; }
+@mixin mixin-not-used() {
+  color: blue;
 }
 
-@mixin less-than-pluto-not-used {
-  @media (max-width: $bbb) {
-    @content;
-  }
+@mixin mixin-used {
+  color: red;
 }

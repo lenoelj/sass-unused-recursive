@@ -1,13 +1,9 @@
-$not-used: 20px;
+$orb-hello-component-font-size: 14px !default;
 
-.something {
-  padding: 20px;
+.orb-c-vendor-component-1 {
+  font-size: $orb-hello-component-font-size;
 }
 
-.hello-from-orbit-ui {
-  color: black !important;
-}
-
-.hello-from-orbit-ui-2 {
-  color: $foo-used;
+.orb-c-vendor-component-2 {
+  color: $orb-c-vendor-component-variable-used-in-different-file;
 }

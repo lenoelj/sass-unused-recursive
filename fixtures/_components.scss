@@ -1,15 +1,12 @@
-.test {
-  width: 100px;
+.app-c-component-1 {
+  color: $app-c-variable-used-in-different-file;
 }
 
-.pension-component {
-  color: $foo;
+.aaaa {
+  @include mixin-used();
 }
 
-.foo {
-  color: red;
-}
-
-.u-#{$inter-pre}-#{$inter-post} {
+.app-c-#{$app-c-used-variable-in-interpolation} {
   position: fixed;
+  @include mixin-used();
 }

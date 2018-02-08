@@ -1,6 +1,9 @@
-// client theming variables
-// client theming mixin
+$theme-color-used: blue;
+
+$orb-s-override-vendor-default-variable: $theme-color-used;
+$orb-c-vendor-component-variable-used-in-different-file: aliceblue;
+
+$app-c-variable-used-in-different-file: lime;
+$app-c-used-variable-in-interpolation: selector-name;
 
 @import "main";
-
-// override
