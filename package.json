@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "description": "",
   "main": "lib/index.js",
-  "author": "",
-  "license": "ISC",
+  "author": "Orbit (http://www.orbitbenefits.com)",
+  "license": "GPL-3.0",
   "dependencies": {
     "@orbit-tech/sass-unused": "^0.1.0",
     "lodash.flatten": "^4.4.0",
