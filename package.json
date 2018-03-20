@@ -8,6 +8,7 @@
   "dependencies": {
     "@orbit-tech/sass-unused": "^0.1.0",
     "lodash.flatten": "^4.4.0",
+    "lodash.intersection": "^4.4.0",
     "lodash.uniq": "^4.5.0",
     "sass-graph": "^2.2.4"
   },
