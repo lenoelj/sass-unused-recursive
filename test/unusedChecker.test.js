@@ -3,7 +3,6 @@ const unusedChecker = require("../lib");
 const path = require("path");
 
 const entry = path.resolve("./fixtures/_main.scss");
-// const entryPoint = path.resolve("./fixtures/themes/_one.scss");
 const includePaths = [ path.resolve("./fixtures/vendor") ];
 
 describe("unusedChecker()", function () {
