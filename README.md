@@ -1,21 +1,22 @@
 # SASS unused variables check
 
+[![Build Status](https://travis-ci.org/orbit-tech/sass-unused-recursive.png?branch=master)](https://travis-ci.org/orbit-tech/sass-unused-recursive)
+
 This tool will help you determine variables which are not defined in your sass project.
 
-* It resolves dependencies import statements automatically.
+* It resolves dependencies import statements automatically by using [sass-graph](https://www.npmjs.com/package/sass-graph).
 * Is resolves _included paths_ in your project.
 
 ## Install
 
 ``` sh
-$ npm install sass-unused-recursive
-$ npm test # to make sure that everything is fine
+npm install @orbit-tech/sass-unused-recursive --save
 ```
 
 ## Usage
 
 ``` js
-import sassUnused from 'sass-unused-recursive';
+let sassUnused = require('@orbit-tech/sass-unused-recursive');
 
 let result = sassUnused('./path/to/entry/file.scss'); // [ 'unused-variable-one' ]
 ```
@@ -96,12 +97,12 @@ let result = sassUnused({
 Fully configured example for directory structure defined above will looks as follow:
 
 ``` js
-import sassUnused from 'sass-unused-recursive';
+let sassUnused = require('@orbit-tech/sass-unused-recursive');
 
 let result = sassUnused({
-    entries: "./fixtures/themes",
-    includePaths: "./fixtures/vendor",
-    exclude: [ "vendor" ]
+    entries: './fixtures/themes',
+    includePaths: './fixtures/vendor',
+    exclude: [ 'vendor' ]
 });
 
 console.log('Unused variables are:\n');
@@ -115,12 +116,21 @@ $ node example/app.js
 Unused variables are:
 
 {
-    "__common": [                   <-- Those are variables which are not defined in every entry point
-        "app-s-variable-not-used",
-        "mixin-not-used"
+    '__common': [                   <-- Those are variables which are not defined in every entry point
+        'app-s-variable-not-used',
+        'mixin-not-used'
     ],
-    "_one.scss": [                  <-- Those are variables not defined in particular entry
-        "foo"
+    '_one.scss': [                  <-- Those are variables not defined in particular entry
+        'foo'
     ]
 }
+```
+
+## Running tests
+
+``` sh
+git clone git@github.com:orbit-tech/sass-unused-recursive.git
+cd sass-unused-recursive
+npm install
+npm test
 ```
