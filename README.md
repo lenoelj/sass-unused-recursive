@@ -4,7 +4,7 @@
 
 This tool will help you determine variables which are not defined in your Sass (Syntactically awesome stylesheets) project.
 
-* It resolves the dependencies in import statements then validates those same import statements using [sass-graph](https://www.npmjs.com/package/sass-graph).
+* It resolves the dependencies in _import statements_ then validates those same import statements using [sass-graph](https://www.npmjs.com/package/sass-graph).
 * It resolves and validates _included paths_ in your project.
 
 ## Install
@@ -96,7 +96,7 @@ let result = sassUnused({
 
 ## Example
 
-A fully configured example for the files in the [fixtures directory](./fixtures) structure is defined [above](#Options) (see also [example/app.js](./example/app.js)):
+A fully configured example for the files in the [fixtures directory](./fixtures) structure is defined [above](#options) (see also [example/app.js](./example/app.js)):
 
 ``` js
 let sassUnused = require('@orbit-tech/sass-unused-recursive');
