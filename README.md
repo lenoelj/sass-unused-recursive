@@ -1,19 +1,23 @@
-# SASS unused variables check
+# Sass unused variables check
 
 [![Build Status](https://travis-ci.org/orbit-tech/sass-unused-recursive.png?branch=master)](https://travis-ci.org/orbit-tech/sass-unused-recursive)
 
-This tool will help you determine variables which are not defined in your sass project.
+This tool will help you determine variables which are not defined in your Sass (Syntactically awesome stylesheets) project.
 
-* It resolves dependencies import statements automatically by using [sass-graph](https://www.npmjs.com/package/sass-graph).
-* Is resolves _included paths_ in your project.
+* It resolves the dependencies in import statements then validates those same import statements using [sass-graph](https://www.npmjs.com/package/sass-graph).
+* It resolves and validates _included paths_ in your project.
 
 ## Install
 
+Add `sass-unused-recursive` into your project as a developer dependency.
+
 ``` sh
-npm install @orbit-tech/sass-unused-recursive --save
+npm install @orbit-tech/sass-unused-recursive --save-dev
 ```
 
 ## Usage
+
+Create a file which imports `sass-unused-recursive` library and then you can validate your project by passing the location of the entry file:
 
 ``` js
 let sassUnused = require('@orbit-tech/sass-unused-recursive');
@@ -24,9 +28,7 @@ let result = sassUnused('./path/to/entry/file.scss'); // [ 'unused-variable-one'
 
 ## Options
 
-All options are passed as an object in the first argument
-
-Lets assume following directory structure:
+All options are passed as an object in the first argument. Let's assume following directory structure:
 
 ```
 ├── theme.scss
@@ -46,7 +48,7 @@ Lets assume following directory structure:
 
 ### entry
 
-Specify entry scss file
+Specify the path of the scss entry file:
 
 Type: String
 
@@ -58,7 +60,7 @@ let result = sassUnused({
 
 ### entries
 
-Sometimes you might have a multiple entries for your code. You pass this as a directory to themes
+Sometimes you might have multiple entries for your code. If this is the case, you can validate them all by defining a path to the themes directory:
 
 Type: String
 
@@ -70,7 +72,7 @@ let result = sassUnused({
 
 ### includePaths
 
-When your code have external include paths defined, you can specify those.
+When your code contains external include paths to other directories, you can also configure those:
 
 Type: Array<String>
 
@@ -82,7 +84,7 @@ let result = sassUnused({
 
 ### exclude
 
-This option allow you to trim down the results from unused mixins, functions or vendor. Vendor option will not tell you about unused variables which was **defined** in files from directories which was defined in _includePaths_ option.
+Use this option to filter the results from unused _mixins_, _functions_ or _vendor_ definitions:
 
 Type: Array<'functions', 'mixins', 'vendor'>
 
@@ -94,7 +96,7 @@ let result = sassUnused({
 
 ## Example
 
-Fully configured example for directory structure defined above will looks as follow:
+A fully configured example for the files in the [fixtures directory](./fixtures) structure is defined [above](#Options) (see also [example/app.js](./example/app.js)):
 
 ``` js
 let sassUnused = require('@orbit-tech/sass-unused-recursive');
@@ -109,7 +111,7 @@ console.log('Unused variables are:\n');
 console.log(JSON.stringify(result, null, 4));
 ```
 
-You can run example by executing following command:
+You can run this example by executing the following command:
 
 ``` sh
 $ node example/app.js
@@ -126,7 +128,9 @@ Unused variables are:
 }
 ```
 
-## Running tests
+## Running the tests
+
+You can run the tests by executing the following commands:
 
 ``` sh
 git clone git@github.com:orbit-tech/sass-unused-recursive.git
@@ -134,3 +138,6 @@ cd sass-unused-recursive
 npm install
 npm test
 ```
+## Contributing to the project
+
+Thanks for reading this far. If you have any improvements to suggest for this project, please raise an issue/pull request.
